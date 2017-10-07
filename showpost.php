@@ -15,7 +15,7 @@ $sql = "SELECT * FROM post ";
 
 $posts=$dbh->query($sql);
 
-if($posts){
+if(!empty($posts)){
     //echo $posts;
     foreach ($posts as $p) {
         echo '<div style="width:50%;margin: auto">';

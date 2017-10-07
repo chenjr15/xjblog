@@ -20,9 +20,10 @@ else{
 ?>
 <table style="text-align:center"><tr><th>UID</th><th>name</th><th>gender</th><th>age</th></tr>
 <?php
-$ret = $dbh->query("SELECT UID, name,gender,age FROM 'user_info' ");
+$sql = "SELECT UID, name,gender,age FROM `user_info` ";
+$ret = $dbh->query($sql);
 if($ret) {
-    echo "query success";
+    //echo "query success";
 
     foreach ($ret as $ret_arr) {
         echo "<tr>";
