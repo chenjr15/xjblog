@@ -8,7 +8,7 @@ define('DBNAME', 'www_blog');
 function connectDB( )
 {
     $conn = mysql_connect(DBHOST,DBUSER,DBPWD);
-    if(!$conn)die("Failed to connect to db");
+    if(!$conn)return NULL;
     mysql_select_db(DBNAME);
     return $conn;
 
