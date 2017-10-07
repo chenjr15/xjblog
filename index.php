@@ -6,11 +6,45 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>XJBlog</title>
 </head>
-<body>
-<h1 style="color:DeepSkyBlue; text-align:center">XJBlog</h1>
-<hr></hr>
+<div style="width:60%;margin: auto ;">
+    <div  style="background:#8d8d8d; height:100px"  >
+        <div style="float:left;padding-left:45px;">
+            <h1 style="color:DeepSkyBlue;">XJBlog</h1>
+        </div>
+
+        <div style = "text-align:center;float:right;padding: 15px; ">
+            <form action="login.php" method="post">
+                <div>Username:  
+                    <input type="text" name="name" value="" style="width:40%">
+                    <input type="submit" value="SignIn" style="width:18%">
+                </div> 
+                <div>Password: 
+                    <input type="password" name="password" value="" style="width:40%">
+                    <input type="submit" value="SignUp" style="width:18%">
+                </div>
+            </form>
+            
+        </div>
+        
+    </div>
+    <div>
+        <?php
+        require_once 'showpost.php';
+
+        ?>
+
+    </div>
+  
+
+</div>
+
+ 
+
+
+<frame src="showpost.php">
+
 <?php
 
 ?>
-</body>
+
 </html>
