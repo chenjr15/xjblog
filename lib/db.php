@@ -23,7 +23,20 @@ function connectDB( )
     return $dbh;
 
 }
-
+function getUserName($uid){
+    $dbh = connectDB();
+    
+    $sql = "SELECT name FROM `user_info` WHERE `UID` = ".intval($uid)." ";
+    //echo $sql;
+    $ret=$dbh->query($sql);
+    $ulist = $ret->fetchAll();
+    if(empty($ulist))
+        return null;
+    else {
+        return $ulist[0]['name'];
+        
+    }
+}
 
 
 ?>
