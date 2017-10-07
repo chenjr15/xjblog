@@ -14,7 +14,7 @@ if(!empty($posts)){
     foreach ($posts as $p) {
         echo '<div style="width:80%;margin: auto">';
         echo '<h2 style="text-align:center">'.$p['title'].'</h2>';
-        echo '<h6 style="text-align:right">by '.$p['uid']."|".$p['time'].'</h6><br>';
+        echo '<h6 style="text-align:right">by '.getUserName($p['uid'])."|".$p['time'].'</h6><br>';
         echo '<p style="text-indent:50px;">'.$p['text'].'</p>';
         echo '<hr style="width:90%"></div>';
 
