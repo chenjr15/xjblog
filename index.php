@@ -18,16 +18,38 @@
             <form action="login.php" method="post">
                 <div>Username:  
                     <input type="text" name="name" value="" style="width:40%">
-                    <input type="submit" value="SignIn" style="width:18%">
+                    <input type="submit" name = "type" value="SignIn" style="width:18%">
                 </div> 
                 <div>Password: 
                     <input type="password" name="password" value="" style="width:40%">
-                    <input type="submit" value="SignUp" style="width:18%">
+                    <input type="submit"name = "type" value="SignUp" style="width:18%">
                 </div>
             </form>
             
         </div>
         
+    </div>
+    <div id="post_row">
+        <form action="post_content.php" method="post">
+            
+            <div >
+                <input type="text" name = "title" value="title here..." class= "post_">
+            </div>
+
+            
+            <div>
+                <input type="text" name = "content" value="your content here" size=500 class= "post_ content">
+            </div>
+            
+            <div style = "margin-right:0">
+                <input type="checkbox" name="anonymous" value=1  >Anonymous
+                <input type="submit" name="submit" id="post_cnt_btn" value="Submit">
+                <input type="reset" value = "reset">
+            </div>
+            
+        </form>   
+
+
     </div>
     <div>
         <?php
@@ -47,6 +69,20 @@
             color:  white;
             text-decoration: none
             }
+        #post_row{
+            width:80%;
+            margin: 25px;
+        }
+        .post_{
+            width:100%;
+        }
+        .content{
+            text-align:left;
+           
+            height:100px;
+
+        }
    
 </style>
+<div style = "text-align:center;">Copyright © 2017 XJBlog All Rights Reserved. </div>
 </html>
