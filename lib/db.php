@@ -7,8 +7,8 @@
 </head>
 <body>
 <?php
-define('DBHOST', '192.168.20.104');
-define('DBUSER', 'wwww');
+define('DBHOST', '127.0.0.1');
+define('DBUSER', 'www');
 define('DBPWD', 'www_kouling');
 define('DBNAME', 'www_blog');
 
