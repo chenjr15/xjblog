@@ -16,12 +16,14 @@ else{
 }
 //$result=mysqli_query("SELECT UID, name,gender,age FROM userinfo ");
 //$dc = mysql_num_rows($result);
-echo "All $dc users <br>";
+//echo "All $dc users <br>";
 echo "<table><tr><th>UID</th><th>name<th><th>gender</th><th>age</th></tr>";
+$ret = $dbh->query("SELECT UID, name,gender,age FROM user_info ");
+if($ret) echo "query success";
+foreach ($ret as $ret_arr) {
+    # code...
 
-for($i =0;$i<$dc;$i++){
 	
-	$ret_arr=mysql_fetch_assoc();	
     echo "<tr>";
     $uid=$ret_arr['UID'];
     $name = $ret_arr['name'];

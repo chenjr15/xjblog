@@ -16,7 +16,7 @@ define('DBNAME', 'www_blog');
 function connectDB( )
 {
     $dsn = 'mysql:host='.DBHOST.';dbname='.DBNAME;
-    echo $dsn.'<br>';
+   // echo $dsn.'<br>';
     try{
         $dbh = new PDO($dsn, DBUSER, DBPWD);
     }catch(PDOException $e){
@@ -25,9 +25,7 @@ function connectDB( )
         die("连接数据库失败<br>".$errmsg);
     }
   
-    
-    if(!$dbh)return NULL;
-    echo 'connect success<br>';
+    //echo 'connect success<br>';
    
     return $dbh;
 
