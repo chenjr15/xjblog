@@ -17,26 +17,29 @@ else{
 //$result=mysqli_query("SELECT UID, name,gender,age FROM userinfo ");
 //$dc = mysql_num_rows($result);
 //echo "All $dc users <br>";
-echo "<table><tr><th>UID</th><th>name<th><th>gender</th><th>age</th></tr>";
-$ret = $dbh->query("SELECT UID, name,gender,age FROM user_info ");
-if($ret) echo "query success";
-foreach ($ret as $ret_arr) {
-    # code...
+?>
+<table style="text-align:center"><tr><th>UID</th><th>name</th><th>gender</th><th>age</th></tr>
+<?php
+$ret = $dbh->query("SELECT UID, name,gender,age FROM 'user_info' ");
+if($ret) {
+    echo "query success";
 
-	
-    echo "<tr>";
-    $uid=$ret_arr['UID'];
-    $name = $ret_arr['name'];
-    $gender = $ret_arr['gender'];
-    $age = $ret_arr['age'];
+    foreach ($ret as $ret_arr) {
+        echo "<tr>";
+        $uid=$ret_arr['UID'];
+        $name = $ret_arr['name'];
+        $gender = $ret_arr['gender'];
+        $age = $ret_arr['age'];
 
-	echo "<td>$uid</td>";
-    echo "<td>$name</td>";
-    echo "<td>$gender</td>";
-    echo "<td>$age</td>";
-	echo "</tr>";
+        echo "<td>$uid</td>";
+        echo "<td>$name</td>";
+        echo "<td>$gender</td>";
+        echo "<td>$age</td>";
+        echo "</tr>";
+    }
 }
 echo "</table>";
+$dbh =null;
 ?>
 </body>
 </html>

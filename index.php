@@ -10,7 +10,7 @@
 <h1 style="color:DeepSkyBlue; text-align:center">XJBlog</h1>
 <hr></hr>
 <?php
-phpinfo();
+
 ?>
 </body>
 </html>
