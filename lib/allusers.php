@@ -11,7 +11,7 @@ require_once 'db.php';
 $conn = connectDB();
 if($conn)echo 'connect success<br>';
 else echo 'connect failed<br>';
-$result=mysql_query("SELECT UID, name,gender,age FROM userinfo ");
+$result=mysqli_query("SELECT UID, name,gender,age FROM userinfo ");
 $dc = mysql_num_rows($result);
 echo "All $dc users <br>";
 echo "<table><tr><th>UID</th><th>name<th><th>gender</th><th>age</th></tr>";

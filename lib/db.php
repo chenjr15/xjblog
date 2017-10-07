@@ -1,5 +1,5 @@
 <?php
-define('DBHOST', 'localhost');
+define('DBHOST', '192.168.20.104');
 define('DBUSER', 'wwww');
 define('DBPWD', 'www_kouling');
 define('DBNAME', 'www_blog');
@@ -7,7 +7,8 @@ define('DBNAME', 'www_blog');
 
 function connectDB( )
 {
-    $conn = mysql_connect(DBHOST,DBUSER,DBPWD);
+    $conn = mysqli_connect(DBHOST,DBUSER,DBPWD);
+    
     if(!$conn)return NULL;
     echo 'connect success<br>';
     mysql_select_db(DBNAME);
