@@ -1,3 +1,11 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
 <?php
 define('DBHOST', '192.168.20.104');
 define('DBUSER', 'wwww');
@@ -7,15 +15,28 @@ define('DBNAME', 'www_blog');
 
 function connectDB( )
 {
-    $conn = mysqli_connect(DBHOST,DBUSER,DBPWD);
+    $dsn = 'mysql:host='.DBHOST.';dbname='.DBNAME;
+    echo $dsn.'<br>';
+    try{
+        $dbh = new PDO($dsn, DBUSER, DBPWD);
+    }catch(PDOException $e){
+        $encode = mb_detect_encoding($e->getMessage(),array("ASCII",'UTF-8',"GB2312","GBK",'BIG5')); 
+        $errmsg = $str_encode = mb_convert_encoding($e->getMessage(), 'UTF-8', $encode);
+        die("连接数据库失败<br>".$errmsg);
+    }
+  
     
-    if(!$conn)return NULL;
+    if(!$dbh)return NULL;
     echo 'connect success<br>';
-    mysql_select_db(DBNAME);
-    return $conn;
+   
+    return $dbh;
 
 }
 
 
 
 ?>
+
+</body>
+</html>
+
