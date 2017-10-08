@@ -16,6 +16,7 @@ if(!empty($posts)){
         echo '<h2 style="text-align:center">'.$p['title'].'</h2>';
         echo '<h6 style="text-align:right">by '.getUserName($p['uid'])."|".$p['time'].'</h6><br>';
         echo '<p style="text-indent:50px;"> '.$p['content'].' </p>';
+        echo '<div style="text-align:right" ><a href="lib/delete_post.php?id='.$p['id'].'">delete</a></div>';
         echo '<hr style="width:100%"></div>';
 
     }

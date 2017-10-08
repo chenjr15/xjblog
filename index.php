@@ -30,20 +30,20 @@
         
     </div>
     <div id="post_row">
-        <form action="post_content.php" method="post">
+        <form action="lib/new_post.php" method="post">
             
             <div >
-                <input type="text" name = "title" value="title here..." class= "post_">
+                <input type="text" name = "title" value="title here..." onfocus="if (this.value =='title here...')this.value='';" onblur="if (this.value =='')this.value='title here...'" class= "post_">
             </div>
 
             
             <div>
-                <input type="text" name = "content" value="your content here" size=500 class= "post_ content">
+                <input type="text" name = "content"  value="Your content here" onfocus="if (this.value =='Your content here')this.value='';" onblur="if (this.value =='')this.value='Your content here'"  size=500 class= "post_ content">
             </div>
             
             <div style = "margin-right:0">
                 <input type="checkbox" name="anonymous" value=1  >Anonymous
-                <input type="submit" name="submit" id="post_cnt_btn" value="Submit">
+                <input type="submit" name="submit" id="post_cnt_btn" value="New Post">
                 <input type="reset" value = "reset">
             </div>
             
@@ -75,7 +75,10 @@
         }
         .post_{
             width:100%;
+            
+
         }
+     
         .content{
             text-align:left;
            
