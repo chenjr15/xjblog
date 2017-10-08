@@ -15,17 +15,7 @@
         </div>
 
         <div style = "text-align:center;float:right;padding: 15px; ">
-            <form action="login.php" method="post">
-                <div>Username:  
-                    <input type="text" name="name" value="" style="width:40%">
-                    <input type="submit" name = "type" value="SignIn" style="width:18%">
-                </div> 
-                <div>Password: 
-                    <input type="password" name="password" value="" style="width:40%">
-                    <input type="submit"name = "type" value="SignUp" style="width:18%">
-                </div>
-            </form>
-            
+            <?php require "login.php" ?>
         </div>
         
     </div>
