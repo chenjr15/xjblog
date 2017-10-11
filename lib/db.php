@@ -39,7 +39,7 @@ function execSQL($sql){
     $dbh = connectDB();
     $ret=$dbh->query($sql);
     if($ret){
-        $ulist = $ret->fetchAll();
+        $ulist = $ret->fetchAll(PDO::FETCH_ASSOC);
         $dbh=null;
         if(empty($ulist))
             return false;
