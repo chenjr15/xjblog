@@ -1,5 +1,6 @@
 <?php
 require_once 'lib/db.php';
+require_once 'lib/session.php';
 function checkpwd($user , $pwd){
     
     $sql = "SELECT password FROM `user_info` WHERE `name` = '$user' ;";
@@ -13,25 +14,11 @@ function checkpwd($user , $pwd){
         
     }
 }
-function querySession($SID){
-    $sql = "SELECT UID,name,logined,startime FROM `sessions` WHERE `SID` = '$SID' ";
-    $ret = execSQL($sql);
-    if($ret){
-        return $ret[0];
-    }
-    else return null;
-}
-function addSeeionToDB($SID,$UID,$name,$logined,$startime){
-    $sql ="INSERT INTO `sessions` (`id`, `SID`, `UID`, `name`, `logined`, `startime`)";
-    $sql =  $sql." VALUES (NULL, '".$SID."' ,'".$UID."', '".$name." ', '".$logined." ', '".$startime."' );";
-    $ret = execSQL($sql);
-    return $ret;
 
-}
 function OnSuccess($username){
     
     setcookie("xjbu",getUID($username));
-    addSeeionToDB(session_id(),getUID($username),$username,1, date("Y-m-d H:i:s"));
+    updateSessionDB(session_id(),getUID($username),$username,1, date("Y-m-d H:i:s"));
 
     
 
@@ -56,6 +43,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $varifed = checkpwd($username, $password);
     if($varifed){
         OnSuccess($username);
+        header("location:/");
     }else{
         OnFailed();
     }
@@ -70,14 +58,12 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         if ($s){
             foreach($s as $key=>$value){
                 $_SESSION[$key] = $value;
-
             }
-            
         }
     }
 }
 
-if(!empty($_SESSION['logined'])){
+if(intval($_SESSION['logined']==1)){
     echo "Welcome ".$s['name']."<br>";
     echo '<a href="logout.php">Log out</a>';
 }else{
