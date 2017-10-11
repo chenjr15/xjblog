@@ -20,7 +20,7 @@ date_default_timezone_set('PRC');
 $datetime= date("Y-m-d H:i:s");
 $dbh = connectDB();
 $sql = "INSERT INTO `post` (`id`, `title`, `content`, `time`, `uid`) VALUES (NULL, '".$_POST['title']."' ,'".$_POST['content']."', '".$datetime." ', '".$uid."' );";
-echo $sql;
+tolog($sql);
 $ret = $dbh->query($sql);
 $dbh=null;
 //var_dump($ret);
