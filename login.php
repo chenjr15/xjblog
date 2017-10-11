@@ -66,8 +66,12 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     @$s_id = $_COOKIE[session_name()];
     if($s_id ){
         $s =  querySession($s_id);
+        //print_r($s);
         if ($s){
-            array_splice($_SESSION,count($_SESSION),4,$s);
+            foreach($s as $key=>$value){
+                $_SESSION[$key] = $value;
+
+            }
             
         }
     }
