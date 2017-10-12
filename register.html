@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register</title>
+</head>
+<body>
+    <div class="register box">
+        <form id= "register_form" action="lib/new_user.php" method="post">
+        <table>
+            <tr>
+                <td><label for="uname_id">Username:</label></td>
+                <td><input type="text" id="uname_id" name="username" required="required" ></td>
+            </tr>
+            <tr>
+                <td><label for="pwd_id">Password:</label></td>
+                <td><input type="password" name="password" id="pwd_id" required="required" ></td>
+            </tr>
+            <tr>
+                <td><label for="pwd2_id">Again:</label></td>
+                <td><input type="password" name="password2" id="pwd2_id" required="required" ></td>
+            </tr>
+            <tr>
+                <td><label for="gender_id">Gender:</label></td>
+                <td><input type="radio" name="gender" value="M">Male<input type="radio" name="gender" value="F">Female</td>
+            </tr>
+            <tr>
+                <td><label for="email_id">Email:</label></td>
+                <td><input type="text" name="email" id="email_id" required="required" ></td>
+            </tr>
+            <tr>
+                <td><label for="phone_id">Phone:</label></td>
+                <td><input type="text" name="phone" id="phone_id"></td>
+            </tr>
+            <tr>
+                <td><label >&nbsp</label></td>
+                <td><input type="submit" value="I am ready!"></td>
+            </tr>
+
+
+        </table>
+        </form>
+
+
+    </div>
+</body>
+<style>
+    .register{
+        width:60%;
+        margin: auto;
+        padding-left: 20%;
+        padding-right: 20%;
+    }
+
+</style>
+</html>
