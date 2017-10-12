@@ -36,10 +36,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     } if(empty($_POST['password'])){
         die("Empty password!");
     }
+    if(empty($_POST['type'])){
+        die("Unknow type!");
+    }
 
     $username = $_POST['username'];
     $password = $_POST['password'];
-
+if($_POST['type']=="SignIn"){
     $varifed = checkpwd($username, $password);
     if($varifed){
         OnSuccess($username);
@@ -47,6 +50,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }else{
         OnFailed();
     }
+}else{
+    header("location:register.html");
+}
     
 }
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
@@ -62,9 +68,12 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         }
     }
 }
-
-if(intval($_SESSION['logined']==1)){
-    echo "Welcome ".$s['name']."<br>";
+if(array_key_exists('logined',$_SESSION))
+    $logined = $_SESSION['logined'];
+else 
+$logined = 0;
+if(intval($logined)==1){
+    echo "Welcome <a href=me.php>".$s['name']."</a><br>";
     echo '<a href="logout.php">Log out</a>';
 }else{
 
