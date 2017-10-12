@@ -17,12 +17,17 @@ function addSessionToDB($SID,$UID,$name,$logined,$startime){
 function updateSessionDB($SID,$UID,$name,$logined,$startime){
     $ulist = querySession($SID);
     $session_existed = 0;
-    if(!empty(ulist)) $session_existed = 1;
+
+    if(!empty($ulist)){ 
+        $session_existed = 1;
+        //print_r($ulist);
+        header("Location:/");
+    }
     if($session_existed == 1){
         $sql = "UPDATE `sessions` SET `SID` = '$SID', `name` = '$name', `logined` = '$logined' ,`startime`='$startime' WHERE `sessions`.`SID` = '$SID'";
         $ret = execSQL($sql);
     }else{
-        $ret=addSeeionToDB($SID,$UID,$name,$logined,$startime);
+        $ret=addSessionToDB($SID,$UID,$name,$logined,$startime);
     }
     return $ret;
 }
