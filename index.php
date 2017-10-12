@@ -19,16 +19,16 @@
         </div>
         
     </div>
-    <div id="post_row">
-        <form action="lib/new_post.php" method="post">
+    <div id="post_row" style="width=80%" >
+        <form action="lib/new_post.php" method="post" style="width=100%">
             
-            <div >
+            <div style="width=100%" >
                 <input type="text" name = "title" value="title here..." onfocus="if (this.value =='title here...')this.value='';" onblur="if (this.value =='')this.value='title here...'" class= "post_">
             </div>
 
             
-            <div>
-                <input type="text" name = "content"  value="Your content here" onfocus="if (this.value =='Your content here')this.value='';" onblur="if (this.value =='')this.value='Your content here'"  size=500 class= "post_ content">
+            <div style="width=100%">
+                <input type="text" name = "content"  value="Your content here" onfocus="if (this.value =='Your content here')this.value='';" onblur="if (this.value =='')this.value='Your content here'"  class= "post_ content">
             </div>
             
             <div style = "margin-right:0">
