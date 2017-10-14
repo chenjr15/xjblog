@@ -18,10 +18,11 @@ else{
 //$dc = mysql_num_rows($result);
 //echo "All $dc users <br>";
 ?>
-<table style="text-align:center"><tr><th>UID</th><th>name</th><th>gender</th><th>age</th></tr>
+<table style="text-align:center"><tr><th>UID</th><th>name</th><th>email</th><th>phone</th></tr>
 <?php
-$sql = "SELECT UID, name,gender,age FROM `user_info` ";
+$sql = "SELECT UID, name,phone,email FROM `user_info` ";
 $ret = $dbh->query($sql);
+print_r($ret);
 if($ret) {
     //echo "query success";
 
@@ -29,13 +30,14 @@ if($ret) {
         echo "<tr>";
         $uid=$ret_arr['UID'];
         $name = $ret_arr['name'];
-        $gender = $ret_arr['gender'];
-        $age = $ret_arr['age'];
+        $email = $ret_arr['email'];
+        $phone = $ret_arr['phone'];
+
 
         echo "<td>$uid</td>";
         echo "<td>$name</td>";
-        echo "<td>$gender</td>";
-        echo "<td>$age</td>";
+        echo "<td>$email</td>";
+        echo "<td>$phone</td>";
         echo "</tr>";
     }
 }
