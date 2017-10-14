@@ -23,7 +23,7 @@
         <form id="post_form" action="lib/new_post.php" method="post" style="width=100%">
             
             <div style="width=100%" >
-                <input type="text" name = "title" value="title here..." onfocus="if (this.value =='title here...')this.value='';" onblur="if (this.value =='')this.value='title here...'" class= "post_">
+                <input type="text" name = "title" placeholder="title here..."  class= "post_">
             </div>
 
             
