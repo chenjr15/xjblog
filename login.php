@@ -3,13 +3,13 @@ require_once 'lib/db.php';
 require_once 'lib/session.php';
 function checkpwd($user , $pwd){
     
-    $sql = "SELECT password FROM `user_info` WHERE `name` = '$user' ;";
+    $sql = "SELECT password FROM `user_info` WHERE `name` = :user ;";
     
-    $ulist = execSQL($sql);
+    $ulist = execSQL($sql,array("user"=> $user));
     if(empty($ulist))
         return false;
     else {
-        tolog($ulist[0]['password']."::".$pwd);
+        //tolog($ulist[0]['password']."::".$pwd);
         return $ulist[0]['password'] ==  $pwd;
         
     }
@@ -19,13 +19,14 @@ function OnSuccess($username){
     
     setcookie("xjbu",getUID($username));
     updateSessionDB(session_id(),getUID($username),$username,1, date("Y-m-d H:i:s"));
+    //tolog("Login success here.");
 
     
 
 }
 function OnFailed(){
     echo "Username or password is wrong!<br>";
-
+    //tolog("Login Fail here.");
 }
 @session_start();
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -71,7 +72,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 if(array_key_exists('logined',$_SESSION))
     $logined = $_SESSION['logined'];
 else 
-$logined = 0;
+    $logined = 0;
 if(intval($logined)==1){
     echo "Welcome <a href=me.php>".$s['name']."</a><br>";
     echo '<a href="logout.php">Log out</a>';

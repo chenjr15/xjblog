@@ -9,7 +9,7 @@ define('LOGFILE','../xjblog.log');
 function tolog($data,$filename =null){
     if ($filename == null)$filename = LOGFILE;
     $f= fopen($filename,'a');
-    fwrite($f,date("[Y-m-d H:i:s]").$data."\n");
+    fwrite($f,date("[m-d H:i:s]").$data."\n");
     fclose($f);
 
 }
@@ -31,23 +31,31 @@ function connectDB( )
     return $dbh;
 
 }
-function execSQL($sql){
+function execSQL($sql,$kv=null,&$s = null){
     //$sql = addslashes($sql);
     //echo $sql;
-    tolog($sql);
-    connectDB();
+    tolog($sql."\n\t".json_encode($kv));
     $dbh = connectDB();
-    $ret=$dbh->query($sql);
+    $prepared = $dbh->prepare($sql);
+    if($kv)
+        $ret = $prepared->execute($kv);
+    else 
+        $ret = $prepared->execute();
+    $s = $ret;
+    $dbh=null;
     if($ret){
-        $ulist = $ret->fetchAll(PDO::FETCH_ASSOC);
-        $dbh=null;
-        if(empty($ulist))
+        $ulist = $prepared->fetchAll(PDO::FETCH_ASSOC);
+        tolog(json_encode($ulist));
+        if(empty($ulist)){
+            tolog("Empty list!");
             return false;
-        else {
+        }else {
+            tolog(json_encode($ulist));
             return $ulist;
         }
     } else {
-        return null;
+        tolog("RET is NULL");
+        return false;
     }
     
 
@@ -56,10 +64,10 @@ function execSQL($sql){
 function getUserName($uid){
     $dbh = connectDB();
     
-    $sql = "SELECT name FROM `user_info` WHERE `UID` = ".intval($uid)." ";
+    $sql = "SELECT name FROM `user_info` WHERE `UID` = :uid ";
+    $kv = array("uid"=>$uid);
     //echo $sql;
-    $ret=$dbh->query($sql);
-    $ulist = $ret->fetchAll();
+    $ulist = execSQL($sql,$kv);
     $dbh=null;
     if(empty($ulist))
         return null;
@@ -70,10 +78,11 @@ function getUserName($uid){
 }
 function getUID($username){
     
-    
-    $sql = "SELECT UID FROM `user_info` WHERE `name` = '".$username."' ";
+    //tolog("in get uid");
+    $sql = "SELECT UID FROM `user_info` WHERE `name` = :username ";
     //echo $sql;
-    $ulist = execSQL($sql);
+    $kv = array("username"=>$username);
+    $ulist = execSQL($sql,$kv);
     if(empty($ulist))
         return null;
     else {

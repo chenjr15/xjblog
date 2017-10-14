@@ -2,11 +2,15 @@
 require_once 'db.php';
 if(!empty($_GET['id'])){
     $tid= intval( $_GET['id']);
-    $dbh = connectDB();
-    $sql = "DELETE FROM `post` WHERE `post`.`id` = $tid;";
+
+    $sql = "DELETE FROM `post` WHERE `post`.`id` = :tid;";
+    $kv = array(
+        "tid"=> $tid
+    );
     //echo $sql;
-    $ret = $dbh->query($sql);
-    $dbh=null;
+    //tolog("delete here");
+    $ret = false;
+    execSQL($sql,$kv,$ret );
 
     echo '<h3 style = "text-align:center;">';
     //var_dump($ret);
