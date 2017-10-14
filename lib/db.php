@@ -5,7 +5,7 @@ define('DBUSER', 'www');
 define('DBPWD', 'www_kouling');
 define('DBNAME', 'www_blog');
 define('LOGFILE','../xjblog.log');
-
+date_default_timezone_set('PRC');
 function tolog($data,$filename =null){
     if ($filename == null)$filename = LOGFILE;
     $f= fopen($filename,'a');
