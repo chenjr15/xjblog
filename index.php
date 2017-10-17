@@ -28,7 +28,7 @@
 
             
             <div style="width=100%">
-                <textarea form="post_form" id="post_content"  name = "content" rows="10" cols="100" wrap="virtual" placeholder="Your content here" ></textarea>
+                <textarea form="post_form" id="post_content" class="post_" name = "content" rows="10" cols="100" wrap="virtual" placeholder="Your content here" ></textarea>
                 <!-- <input type="textarea" name = "content"  value="Your content here" onfocus="if (this.value =='Your content here')this.value='';" onblur="if (this.value =='')this.value='Your content here'"  class= "post_ content"> -->
             </div>
             
@@ -62,6 +62,7 @@
             }
         #post_row{
             width:80%;
+            margin:0 auto;
             /* margin: 25px; */
         }
         .post_{
