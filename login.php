@@ -20,9 +20,6 @@ function OnSuccess($username){
     setcookie("xjbu",getUID($username));
     updateSessionDB(session_id(),getUID($username),$username,1, date("Y-m-d H:i:s"));
     //tolog("Login success here.");
-
-    
-
 }
 function OnFailed(){
     echo "Username or password is wrong!<br>";
@@ -32,9 +29,8 @@ function OnFailed(){
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if (empty($_POST['username'])){
         die("Please input username!");
-
-
-    } if(empty($_POST['password'])){
+    } 
+    if(empty($_POST['password'])){
         die("Empty password!");
     }
     if(empty($_POST['type'])){
@@ -43,19 +39,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     $username = $_POST['username'];
     $password = $_POST['password'];
-if($_POST['type']=="SignIn"){
-    $varifed = checkpwd($username, $password);
-    if($varifed){
-        OnSuccess($username);
-        header("location:/");
+    if($_POST['type']=="SignIn"){
+        $varifed = checkpwd($username, $password);
+        if($varifed){
+            OnSuccess($username);
+            header("location:/");
+        }else{
+            OnFailed();
+        }
     }else{
-        OnFailed();
+        header("location:register.html");
     }
-}else{
-    header("location:register.html");
-}
     
-}
+}//post
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
     @$s_id = $_COOKIE[session_name()];
@@ -68,11 +64,8 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             }
         }
     }
-}
-if(array_key_exists('logined',$_SESSION))
-    $logined = $_SESSION['logined'];
-else 
-    $logined = 0;
+}//get
+$logined = islogined();
 if(intval($logined)==1){
     echo "Welcome <a href=me.php>".$s['name']."</a><br>";
     echo '<a href="logout.php">Log out</a>';

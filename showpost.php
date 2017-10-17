@@ -2,12 +2,11 @@
 
 <?php 
 require_once 'lib/db.php';
-$dbh = connectDB();
-if(!$dbh) echo "Empty db!<br>";
+require_once 'lib/session.php';
 
 $sql = "SELECT * FROM post ";
 
-$posts=$dbh->query($sql);
+$posts=execSQL($sql);
 
 if(!empty($posts)){
     //echo $posts;
@@ -16,7 +15,8 @@ if(!empty($posts)){
         echo '<h2 style="text-align:center">'.$p['title'].'</h2>';
         echo '<h6 style="text-align:right">by '.getUserName($p['uid'])."|".$p['time'].'</h6><br>';
         echo '<p style="text-indent:50px;"> '.$p['content'].' </p>';
-        echo '<div style="text-align:right" ><a href="lib/delete_post.php?id='.$p['id'].'">delete</a></div>';
+        if(haveDeletePermission(uidNow($_SESSION,1),$p['id']))
+            echo '<div style="text-align:right" ><a href="lib/delete_post.php?id='.$p['id'].'">delete</a></div>';
         echo '<hr style="width:100%"></div>';
 
     }
@@ -24,7 +24,5 @@ if(!empty($posts)){
     echo "<h2 style='color:red;text-align:center'>No post yet!</h2>";
 }
 
-
-$dbh=null;
 ?>
 
