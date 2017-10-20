@@ -1,5 +1,6 @@
 <?php
 require_once 'db.php';
+require_once 'session.php';
 if(empty($_POST['title']))
     {
         die("please input title!");
@@ -9,12 +10,15 @@ if(empty($_POST['content']))
         die("please input content!");
 
     }
-if(empty($_POST['anonymous'])||$_POST['anonymous']=='0')
+if(empty(($_POST['anonymous'])||$_POST['anonymous']=='0')&&islogined() == 0)
     {
         die("please login first");
 
     }
-$uid=2;
+if($_POST['anonymous']=='1')
+    $uid=2;
+else
+    $uid=$_SESSION['UID'];
 date_default_timezone_set('PRC');
 $datetime= date("Y-m-d H:i:s");
 
@@ -37,7 +41,4 @@ else{
     echo '<h3 style = "text-align:center;">Post Failed!</h3>';
 }
 ?>
-<script language="javascript" type="text/javascript"> 
-
-    setTimeout("javascript:location.href='../index.php'", 30000); 
-</script>
+<script src="jump.js"></script>

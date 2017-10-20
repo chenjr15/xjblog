@@ -15,7 +15,7 @@ if(!empty($posts)){
         echo '<h2 style="text-align:center">'.$p['title'].'</h2>';
         echo '<h6 style="text-align:right">by '.getUserName($p['uid'])."|".$p['time'].'</h6><br>';
         echo '<p style="text-indent:50px;"> '.$p['content'].' </p>';
-        if(haveDeletePermission(uidNow($_SESSION,1),$p['id']))
+        if(haveDeletePermission(uidNow(1),$p['id']))
             echo '<div style="text-align:right" ><a href="lib/delete_post.php?id='.$p['id'].'">delete</a></div>';
         echo '<hr style="width:100%"></div>';
 

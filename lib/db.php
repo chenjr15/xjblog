@@ -50,7 +50,7 @@ function execSQL($sql,$kv=null,&$s = null){
             tolog("Empty list!");
             return false;
         }else {
-            tolog(json_encode($ulist));
+            //tolog(json_encode($ulist));
             return $ulist;
         }
     } else {
@@ -87,13 +87,27 @@ function getUID($username){
         return null;
     else {
         return $ulist[0]['UID'];
-        
     }
-
-
+}
+function getUidByTid($tid){
+    $sql = "SELECT `uid` FROM `post` where `id` = :id ";
+    $uid = null;
+    //if(array_key_exists('uid',$_SESSION)&&islogined())
+    $arr=execSQL($sql,array("id"=>$tid))[0];
+    if(array_key_exists("uid",$arr))
+        $uid = $arr["uid"];
+    tolog("quired uid of $tid is $uid");
+    return intval($uid);
 
 }
-
+function isAdmin($uid){
+    if($uid == 1)
+    return TRUE;
+}
+function haveDeletePermission($uid,$tid){
+    tolog("checking whether $uid can delete $tid ");
+    return ($uid == getUidByTid($tid))||(isAdmin($uid)&&islogined());
+}
 
 ?>
 

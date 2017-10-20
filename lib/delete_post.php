@@ -1,17 +1,27 @@
 <?php
 require_once 'db.php';
+require_once 'session.php';
+
+
 if(!empty($_GET['id'])){
     $tid= intval( $_GET['id']);
 
-    $sql = "DELETE FROM `post` WHERE `post`.`id` = :tid;";
-    $kv = array(
-        "tid"=> $tid
-    );
-    //echo $sql;
-    //tolog("delete here");
     $ret = false;
-    execSQL($sql,$kv,$ret );
-
+    do{
+        if($tid == 0)       break;
+        if(!islogined())    break; 
+        $uid=uidNow();
+        if(haveDeletePermission($uid,$tid)){
+            $sql = "DELETE FROM `post` WHERE `post`.`id` = :tid;";
+            $kv = array(
+                "tid"=> $tid
+            );
+            //echo $sql;
+            //tolog("delete here");
+            execSQL($sql,$kv,$ret );
+        }
+      
+    }while(0);
     echo '<h3 style = "text-align:center;">';
     //var_dump($ret);
   
@@ -24,7 +34,4 @@ if(!empty($_GET['id'])){
 }
 ?>
 </h3>
-<script language="javascript" type="text/javascript"> 
-
-    setTimeout("javascript:location.href='../index.php'", 3000); 
-</script>
+<script src="jump.js"></script>

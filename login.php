@@ -52,6 +52,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
     
 }//post
+
+
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
     @$s_id = $_COOKIE[session_name()];
@@ -65,6 +67,8 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         }
     }
 }//get
+
+
 $logined = islogined();
 if(intval($logined)==1){
     echo "Welcome <a href=me.php>".$s['name']."</a><br>";
