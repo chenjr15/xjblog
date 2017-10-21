@@ -3,6 +3,7 @@
 <?php 
 require_once 'lib/db.php';
 require_once 'lib/session.php';
+require_once "lib/comment.php";
 
 $sql = "SELECT * FROM post ";
 
@@ -17,6 +18,7 @@ if(!empty($posts)){
         echo '<p style="text-indent:50px;"> '.$p['content'].' </p>';
         if(haveDeletePermission(uidNow(1),$p['id']))
             echo '<div style="text-align:right" ><a href="lib/delete_post.php?id='.$p['id'].'">delete</a></div>';
+        show_comments($p['id'],uidNow());
         echo '<hr style="width:100%"></div>';
 
     }

@@ -94,9 +94,10 @@ function getUidByTid($tid){
     $uid = null;
     //if(array_key_exists('uid',$_SESSION)&&islogined())
     $arr=execSQL($sql,array("id"=>$tid))[0];
-    if(array_key_exists("uid",$arr))
-        $uid = $arr["uid"];
-    tolog("quired uid of $tid is $uid");
+    if($arr)
+        if(array_key_exists("uid",$arr))
+            $uid = $arr["uid"];
+    //tolog("quired uid of $tid is $uid");
     return intval($uid);
 
 }
@@ -104,9 +105,25 @@ function isAdmin($uid){
     if($uid == 1)
     return TRUE;
 }
-function haveDeletePermission($uid,$tid){
-    tolog("checking whether $uid can delete $tid ");
-    return ($uid == getUidByTid($tid))||(isAdmin($uid)&&islogined());
+
+function getUidByCid($cid){
+    $sql = "SELECT `uid` FROM `comment` where `id` = :id ";
+    $uid = null;
+    //if(array_key_exists('uid',$_SESSION)&&islogined())
+    $arr=execSQL($sql,array("id"=>$cid))[0];
+    if(array_key_exists("uid",$arr))
+        $uid = $arr["uid"];
+    //tolog("quired cid of $tid is $uid");
+    return intval($uid);
+
+}
+
+function haveDeletePermission($uid,$id,$type = 1){
+    tolog("checking whether user $uid can delete text $id, type $type");
+    if($type == 1)
+        return ($uid == getUidByTid($id))||(isAdmin($uid)&&islogined());
+    else 
+        return ($uid == getUidByTid($id))||(isAdmin($uid)&&islogined())||($uid == getUidByCid($id));
 }
 
 ?>
