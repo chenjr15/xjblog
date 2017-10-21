@@ -10,15 +10,15 @@ if(empty($_POST['content']))
         die("please input content!");
 
     }
-if(empty(($_POST['anonymous'])||$_POST['anonymous']=='0')&&islogined() == 0)
+if(@empty(($_POST['anonymous'])||@$_POST['anonymous']=='0')&&islogined() == 0)
     {
         die("please login first");
 
     }
-if($_POST['anonymous']=='1')
+if(@$_POST['anonymous']=='1')
     $uid=2;
 else
-    $uid=$_SESSION['UID'];
+    $uid=uidNow();
 date_default_timezone_set('PRC');
 $datetime= date("Y-m-d H:i:s");
 
